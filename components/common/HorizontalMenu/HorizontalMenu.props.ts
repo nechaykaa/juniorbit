@@ -1,12 +1,12 @@
-import { DetailedHTMLProps, HTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 
-interface IMenuItem {
-	label: string;
-	link: string;
-}
-
-interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-	items: IMenuItem[];
+interface Props extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+	items: string[],
+	initialValue: number,
+	selectedColor?: string;
+	selectedTextColor?: string;
+	textClassName?: string;
+	onItemChanged?: (newValue: number) => void;
 }
 
 export default Props;
