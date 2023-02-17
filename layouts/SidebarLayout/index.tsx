@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useEffect } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import useWindowDemantions from '../../hooks/useWindowDemantions';
 import { LG } from '../../shared/consts/sizes';
@@ -8,7 +9,6 @@ import Props from './SidebarLayout.props';
 
 import Logo from '@components/common/Logo';
 import BurgerMenuIcon from '../../assets/ic_burgerMenu.svg';
-import { useEffect } from 'react';
 
 const SidebarLayout: React.FC<Props> = ({ children, className = '', ...props }) => {
 	const { width, setWidth } = useWindowDemantions();
@@ -35,9 +35,7 @@ const SidebarLayout: React.FC<Props> = ({ children, className = '', ...props }) 
 					<Sidebar />
 				)}
 				<div className='flex justify-between items-center px-2 lg:hidden'>
-					<Link className='cursor-pointer' href='/'>
-						<Logo />
-					</Link>
+					<Logo />
 					<button onClick={() => setIsMenuOpened(true)}>
 						<BurgerMenuIcon />
 					</button>

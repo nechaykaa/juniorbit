@@ -3,9 +3,9 @@ import Props from './Logo.props';
 
 import LogoIcon from '@assets/logo.svg';
 
-const Logo: React.FC<Props> = () => {
+const Logo: React.FC<Props> = ({ className = '' }) => {
 	return (
-		<Link className='font-bold text-2xl' href='/'>
+		<Link className={`${className} font-bold text-2xl`} href='/'>
 			<LogoIcon />
 		</Link>
 	);

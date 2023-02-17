@@ -39,16 +39,14 @@ const Sidebar: React.FC<Props> = ({ className = '', style, ...props }) => {
 			{...props}
 		>
 			<div className='flex justify-between items-center px-5 lg:px-auto'>
-				<Link className='cursor-pointer lg:ml-12' href='/'>
-					<Logo />
-				</Link>
+				<Logo className='lg:ml-12' />
 				<button className='lg:hidden' onClick={() => setIsMenuOpened(false)}>
 					<CloseLgIcon className='stroke-primary' />
 				</button>
 			</div>
 			<div className='relative mt-[49px]'>
 				<div
-					className='w-full h-16 bg-lightGrey absolute transition-all duration-200'
+					className='w-full h-16 bg-lightGrey absolute transition-all duration-200 rounded-[20px] ml-5'
 					style={{ top: spanPadding }}
 				></div>
 				<div className='absolute w-full'>

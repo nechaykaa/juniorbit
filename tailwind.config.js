@@ -8,10 +8,10 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				'primary': '#336BEA',
+				'primary': '#8569D0',
 				'gradient': 'linear-gradient(92.52deg, #4F9EFD 0%, #1635D6 100%)',
 				'BGGrey': '#F9F9F9',
-				'lightGrey': '#EEEEEE',
+				'lightGrey': '#F8F8F8',
 				'grey': '#D3D3D3',
 				'darkGrey': '#8C888A',
 				'black': '#222222',

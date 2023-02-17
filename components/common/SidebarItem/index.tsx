@@ -1,20 +1,24 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useMemo } from 'react';
 import useMenu from '../../../stores/useMenu';
 import Props from './SidebarItem.props';
 
 const SidebarItem: React.FC<Props> = ({ className = '', ref, label, Icon, href = '', validateEndsWith, colorType, ...props }) => {
 	const setIsMenuOpened = useMenu((state) => state.setIsMenuOpened);
 
-	function validateUrl() {
+	const router = useRouter();
+
+	const validateUrl = useMemo(() => {
 		if(typeof window === 'undefined')
 			return false;
-		else if(!validateEndsWith && document.URL.includes(href))
+		else if(!validateEndsWith && router.pathname.includes(href))
 			return true;
-		else if(validateEndsWith&& document.URL.endsWith(href))
+		else if(validateEndsWith&& router.pathname.endsWith(href))
 			return true;
 		else
 			return false;
-	}
+	}, [validateEndsWith, href, router]);
 
 	return (
 		<Link
@@ -24,16 +28,14 @@ const SidebarItem: React.FC<Props> = ({ className = '', ref, label, Icon, href =
 			{...props}
 		>
 			<Icon
-				style={validateUrl() ? {
-					fill: colorType === 'fill' ? '#FF0066' : '',
-					stroke: colorType === 'stroke' ? '#FF0066' : '',
+				style={validateUrl ? {
+					fill: colorType === 'fill' ? '#8569D0' : '',
+					stroke: colorType === 'stroke' ? '#8569D0' : '',
 				} : {
 					fill: colorType === 'fill' ? '#8E8E8E' : '',
 					stroke: colorType === 'stroke' ? '#8E8E8E' : '',
 				}} />
-			<span
-				className={validateUrl() ? 'text-primary' : 'text-[#8E8E8E]' + ' text-BoldBodyText_16'}
-			>
+			<span className={validateUrl ? 'text-primary' : 'text-[#8E8E8E]' + ' text-BodyText_16'}>
 				{label}
 			</span>
 		</Link>
