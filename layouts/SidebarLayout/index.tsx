@@ -6,7 +6,7 @@ import useMenu from '../../stores/useMenu';
 import Sidebar from '../Sidebar';
 import Props from './SidebarLayout.props';
 
-import Logo from '../../assets/logos/logo-horizontal.svg';
+import Logo from '@components/common/Logo';
 import BurgerMenuIcon from '../../assets/ic_burgerMenu.svg';
 import { useEffect } from 'react';
 
@@ -35,10 +35,8 @@ const SidebarLayout: React.FC<Props> = ({ children, className = '', ...props }) 
 					<Sidebar />
 				)}
 				<div className='flex justify-between items-center px-2 lg:hidden'>
-					<Link href='/'>
-						<a className='cursor-pointer'>
-							<Logo />
-						</a>
+					<Link className='cursor-pointer' href='/'>
+						<Logo />
 					</Link>
 					<button onClick={() => setIsMenuOpened(true)}>
 						<BurgerMenuIcon />

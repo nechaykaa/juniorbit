@@ -1,8 +1,10 @@
+import SidebarLayout from '@/layouts/SidebarLayout';
+
 const MainPage = (): JSX.Element => {
 	return (
-		<div>
+		<SidebarLayout>
 
-		</div>
+		</SidebarLayout>
 	);
 };
 
