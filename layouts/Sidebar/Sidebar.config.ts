@@ -30,14 +30,14 @@ const SIDEBAR_ITEMS: ISidebarItem[] = [
 		colorType: 'fill',
 	},
 	{
-		label: 'Сотрудники',
+		label: 'Коллеги',
 		href: '/employees',
 		icon: Employees,
 		colorType: 'stroke',
 	},
 	{
-		label: 'Обратная связь',
-		href: '/feedback',
+		label: 'Справочная',
+		href: '/help',
 		icon: Feedback,
 		colorType: 'fill',
 	},
