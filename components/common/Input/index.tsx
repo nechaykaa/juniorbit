@@ -42,7 +42,7 @@ const Input: React.FC<Props> = ({ className = '', errorMessage, placeholder, val
 						onBlur(e);
 					}}
 					value={value}
-					className={className + ' text-black outline-none bg-transparent'}
+					className={className + ' text-black outline-none bg-transparent mt-0'}
 					{...props} />
 			</div>
 			{errorMessage && (

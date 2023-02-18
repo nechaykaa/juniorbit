@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { ReactNode } from 'react';
 
 export interface ICareerItem {
@@ -40,11 +41,13 @@ const CAREER_STEPS: ICareerItem[] = [
 			<p className='font-semibold h-fit'>
 				Дедлайн заполнения
 				{' '}
-				<span className='text-primary'>
-					опроса об
-					<br />
-					адаптации к компании
-				</span>
+				<Link href='/career/survey'>
+					<span className='text-primary'>
+						опроса об
+						<br />
+						адаптации к компании
+					</span>
+				</Link>
 				{' '}
 				спустя 2 недели
 			</p>
@@ -67,11 +70,14 @@ const CAREER_STEPS: ICareerItem[] = [
 		label: (
 			<p className='font-semibold h-fit'>
 				Дедлайн заполнения 
-				<span className='text-primary'>
-					опроса об
-					<br />
-					адаптации к компании
-				</span>
+				{' '}
+				<Link className='cursor-pointer' href='/career/survey'>
+					<span className='text-primary'>
+						опроса об
+						<br />
+						адаптации к компании
+					</span>
+				</Link>
 				{' '}
 				спустя 1 месяц
 			</p>
