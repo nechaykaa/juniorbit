@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 
 import PROJECTS_TABLE from './tables/projects';
 import EMPLOYEES_TABLE from './tables/employees';
@@ -7,6 +8,9 @@ import FEEDBACK_TABLE from './tables/feedbacks';
 const app = express();
 
 app.use(express.json());
+app.use(cors({
+	origin: '*',
+}))
 
 // projects
 
