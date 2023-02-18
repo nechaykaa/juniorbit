@@ -69,7 +69,12 @@ const Sidebar: React.FC<Props> = ({ className = '', style, ...props }) => {
 							onMouseLeave={() => setInitialSpanPadding()} />
 					))}
 					{router.pathname.includes('hr') && (
-						<Button color='primary' variant='filled' className='w-full ml-10 mr-130 mt-3'>
+						<Button
+							color='primary'
+							variant='filled'
+							className='w-full ml-10 mr-130 mt-3'
+							onClick={() => router.push('/hr/employees/new')}
+						>
 							Создать сотрудника
 						</Button>
 					)}
