@@ -4,6 +4,8 @@ import SidebarLayout from '@/layouts/SidebarLayout';
 
 import ValuesCard from '@assets/values.svg';
 import ContractWork from '@assets/contractWork.svg';
+import Regions from '@assets/regions.svg';
+import ProjectsInfo from '@assets/projectsInfo.svg';
 
 const TAGS = [
 	{
@@ -61,9 +63,11 @@ const HelpPage = (): JSX.Element => {
 			<h2 className='font-bold text-4xl mt-16'>
 				База знаний
 			</h2>
-			<div className='flex overflow-x-scroll gap-6'>
+			<div className='grid grid-cols-2'>
 				<ValuesCard />
 				<ContractWork />
+				<Regions />
+				<ProjectsInfo />
 			</div>
 		</SidebarLayout>
 	);
