@@ -2,28 +2,7 @@ import SidebarLayout from '@/layouts/SidebarLayout';
 import TextHorizontalMenu from '@components/common/TextHorizontalMenu';
 import ProjectCard from '@/components/projects/ProjectCard';
 
-const MenuItems = [
-	{
-		label: 'Все подразделения',
-		link: '#',
-	},
-	{
-		label: 'РЕМЦ',
-		link: '#',
-	},
-	{
-		label: 'Роскультцентр',
-		link: '#',
-	},
-	{
-		label: 'Роспатриот',
-		link: '#',
-	},
-	{
-		label: 'ЦСМС',
-		link: '#',
-	},
-];
+import menuItems from '@/shared/consts/textHorizontalMenuItems';
 
 const Projects = (): JSX.Element => {
 	return(
@@ -32,7 +11,7 @@ const Projects = (): JSX.Element => {
 				Проекты
 			</h1>
 			<div>
-				<TextHorizontalMenu className='' items={MenuItems} />
+				<TextHorizontalMenu items={menuItems} />
 			</div>
 			<div className='grid grid-cols-[1fr_auto]'>
 				<div className='flex flex-col mt-[26px]'>
