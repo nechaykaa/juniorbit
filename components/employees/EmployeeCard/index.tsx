@@ -1,8 +1,6 @@
-import Image from 'next/image';
 import Props from './EmployeeCard.props';
-import Trash from '@assets/ic_trash.svg';
 
-const ProjectCard: React.FC<Props> = ({ duration, name, description, ...props }) => {
+const ProjectCard: React.FC<Props> = ({ duration, name, description, Icon, ...props }) => {
 	return (
 		<button
 			className='bg-white rounded-[20px]'
@@ -22,7 +20,7 @@ const ProjectCard: React.FC<Props> = ({ duration, name, description, ...props })
 						</p>
 					</div>
 					<div>
-						<Trash />
+						{Icon && <Icon />}
 					</div>
 				</div>
 				<p className='text-BodyText_16 text-[12px] text-darkGrey text-left'>
