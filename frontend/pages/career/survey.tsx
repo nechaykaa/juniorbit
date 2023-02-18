@@ -1,37 +1,15 @@
 import Button from '@/components/common/Button';
 import DatePicker from '@/components/common/DatePicker';
 import RadioInput from '@/components/common/RadioInput';
-import Select from '@/components/common/Select';
-import { ISelectOption } from '@/components/common/Select/Select.props';
+import { createFeedback } from '@/shared/api/feedbacks';
 import Input from '@components/common/Input';
 import Title from '@components/common/Title';
 import SidebarLayout from '@layouts/SidebarLayout';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-
-const OPTIONS: ISelectOption[] = [
-	{
-		label: 'Да',
-		value: 'Да',
-	},
-	{
-		label: 'Нет',
-		value: 'Нет',
-	},
-];
-
-const SELECTS = ['Тебя представили коллегам?', 'Ты знаешь как зовут твоих ближайших коллег?',
-	'Ты познакомился с коллегами из других подразделений?', 'Тебе понятен твой функционал?',
-	'Твой руководитель ставит тебе задачи?', 'Тебе понятно как решать задачи, которые ставит руководитель?', 
-	'Есть ли сложности с выполнением задач?', 'Обращаешься ли ты с вопросами к коллегам?', 
-	'Обращаешься ли ты с вопросами к руководителю?', 'Кто чаще всего помогает тебе найти ответы на вопросы?',
-	'Руководитель дает тебе обратную связь по результатам работы?'];
-
-const SELECTS2 = ['Руководитель дает тебе обратную связь по результатам работы?',
-	'Ты знаешь, где найти контакты (телефоны, адреса) коллег?', 'Ты знаешь что делать, если заболеешь?',
-	'Ты понимаешь деятельность подразделений внутри Росмолодежь?',
-	'У тебя есть понимание какие направления охватывает Росмолодежь?', 'У тебя есть представление подведомственные учреждения?'];
+import { useMutation } from 'react-query';
+import * as Yup from 'yup';
 
 const SurveyPage = (): JSX.Element => {
 	const router = useRouter();
@@ -40,16 +18,29 @@ const SurveyPage = (): JSX.Element => {
 
 	const formik = useFormik({
 		initialValues: {
-			fio: '',
-			rate1: '',
-			rate2: '',
-			expectation: '',
-			mentor: '',
-			opinion: '',
-			help: '',
-			lunch: '',
+			mentorName: '',
+			firstWorkDay: '',
+			rate: '',
+			youUnderstandWork: '',
+			managerSetsTasks: '',
+			areDifficulty: '',
 		},
-		onSubmit: () => undefined,
+		validationSchema: Yup.object({
+			mentorName: Yup.string().required('Это обязательное поле'),
+			firstWorkDay: Yup.string().required('Это обязательное поле'),
+			rate: Yup.number().required('Это обязательное поле'),
+			youUnderstandWork: Yup.string().required('Это обязательное поле'),
+			managerSetsTasks: Yup.string().required('Это обязательное поле'),
+			areDifficulty: Yup.string().required('Это обязательное поле'),
+		}),
+		onSubmit: (values) => mutate({
+			...values,
+			rate: +values.rate,
+		}),
+	});
+
+	const { mutate } = useMutation(createFeedback, {
+		onSuccess: () => router.push('/career'),
 	});
 
 	return (
@@ -57,81 +48,58 @@ const SurveyPage = (): JSX.Element => {
 			<Title
 				label='Опросный лист нового сотрудника'
 				onClickBackButton={() => router.push('/career')} />
-			<Input
-				placeholder='ФИО наставника'
-				className='mt-6 mb-3'
-				onChange={formik.handleChange}
-				value={formik.values.fio}
-				name='fio' />
+			<div className='mt-6 mb-3'> 
+				<Input
+					placeholder='ФИО наставника'
+					onChange={formik.handleChange}
+					value={formik.values.mentorName}
+					errorMessage={formik.submitCount ? formik.errors.mentorName : undefined}
+					name='mentorName' />
+			</div>
 			<DatePicker
 				value={date}
-				onChange={setDate}
+				onChange={(date) => {
+					setDate(date);
+					formik.values.firstWorkDay = date.toString();
+				}}
+				errorMessage={formik.submitCount ? formik.errors.firstWorkDay : undefined}
 				placeholder='Дата первого рабочего дня' />
 			<h2 className='text-BoldBodyText_18 mt-7 mb-3'>
 				Насколько совпадают твои ожидания от работы в Росмолодежь с реальностью?
 			</h2>
 			<RadioInput
 				onChange={formik.handleChange}
-				name='rate1'
+				name='rate'
+				errorMessage={formik.submitCount ? formik.errors.rate : undefined}
 				items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => ({
 					label: i.toString(),
 					id: i.toString(),
 				}))} />
-			<Input
-				placeholder='Насколько совпадают твои ожидания от работы  с реальностью?'
-				className='mt-6 mb-3'
-				onChange={formik.handleChange}
-				value={formik.values.expectation}
-				name='expectation' />
-			{SELECTS.map((i, num) => (
-				<Select
-					key={num}
-					className='mb-3'
-					placeholder={i}
-					options={OPTIONS} />
-			))}
-			<Input
-				placeholder='ФИО наставника'
-				className='mt-6 mb-3'
-				onChange={formik.handleChange}
-				value={formik.values.mentor}
-				name='mentor' />
-			<Input
-				placeholder='Напиши, где ты чащеaвсего обедаешь?'
-				className='mt-6 mb-3'
-				onChange={formik.handleChange}
-				value={formik.values.lunch}
-				name='lunch' />
-			{SELECTS2.map((i, num) => (
-				<Select
-					key={num}
-					className='mb-3'
-					placeholder={i}
-					options={OPTIONS} />
-			))}
-			<h2 className='text-BoldBodyText_18 mt-7 mb-3'>
-				Отметь на шкале свой уровень комфорта работы в Росмолодежь
-			</h2>
-			<RadioInput
-				onChange={formik.handleChange}
-				name='rate1'
-				items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => ({
-					label: i.toString(),
-					id: i.toString(),
-				}))} />
-			<Input
-				placeholder='Что поможет тебе почувствовать себя комфортнее и свободнее в новой среде?'
-				className='mt-6 mb-3'
-				onChange={formik.handleChange}
-				value={formik.values.help}
-				name='help' />
-			<Input
-				placeholder='Возможно мы что-то не спросили, а тебе важно поделиться'
-				className='mt-6 mb-3'
-				onChange={formik.handleChange}
-				value={formik.values.opinion}
-				name='opinion' />
-			<Button variant='filled' color='primary' className='w-full'>
+			<div className='mt-6 mb-3'>
+				<Input
+					placeholder='Тебе понятен твой функционал?'
+					onChange={formik.handleChange}
+					value={formik.values.youUnderstandWork}
+					errorMessage={formik.submitCount ? formik.errors.youUnderstandWork : undefined}
+					name='youUnderstandWork' />
+			</div>
+			<div className='mt-6 mb-3'>
+				<Input
+					placeholder='Твой руководитель ставит тебе задачи?'
+					onChange={formik.handleChange}
+					value={formik.values.managerSetsTasks}
+					errorMessage={formik.submitCount ? formik.errors.managerSetsTasks : undefined}
+					name='managerSetsTasks' />
+			</div>
+			<div className='mt-6 mb-3'>
+				<Input
+					placeholder='Есть ли сложности с выполнением задач?'
+					onChange={formik.handleChange}
+					value={formik.values.areDifficulty}
+					errorMessage={formik.submitCount ? formik.errors.areDifficulty : undefined}
+					name='areDifficulty' />
+			</div>
+			<Button variant='filled' color='primary' className='w-full' onClick={formik.submitForm}>
 				Отправить
 			</Button>
 		</SidebarLayout>

@@ -5,6 +5,7 @@ interface Props extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement
     name: string;
     description: string;
     Icon?: React.FC;
+	feedbackId: number;
 }
 
 export default Props;

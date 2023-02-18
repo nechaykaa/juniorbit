@@ -7,6 +7,7 @@ interface IMenuItem {
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
 	items: IMenuItem[];
+	onMenuItemChanged?: (item: string) => void;
 }
 
 export default Props;

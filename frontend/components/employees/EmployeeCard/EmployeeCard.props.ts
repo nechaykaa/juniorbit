@@ -1,10 +1,11 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode } from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 
 interface Props extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-    duration: string;
+    startDate?: Date;
     name: string;
     description: string;
     Icon?: React.FC;
+	label?: string;
 }
 
 export default Props;

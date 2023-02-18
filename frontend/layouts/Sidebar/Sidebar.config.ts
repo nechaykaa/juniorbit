@@ -49,12 +49,6 @@ const SIDEBAR_ITEMS: ISidebarItem[] = [
 		icon: Career,
 		colorType: 'stroke',
 	},
-	{
-		label: 'Достижения',
-		href: '/achievements',
-		icon: Achievement,
-		colorType: 'fill',
-	},
 ];
 
 const SIDEBAR_ITEMS_HR: ISidebarItem[] = [

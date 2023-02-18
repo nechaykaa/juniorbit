@@ -3,6 +3,8 @@ import Button from '@components/common/Button';
 import Input from '@components/common/Input';
 
 import { useFormik } from 'formik';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 import * as Yup from 'yup';
 
 interface IFormik {
@@ -11,6 +13,8 @@ interface IFormik {
 }
 
 const LoginPage = (): JSX.Element => {
+	const router = useRouter();
+
 	const formik = useFormik<IFormik>({
 		initialValues: {
 			password: '',
@@ -20,8 +24,13 @@ const LoginPage = (): JSX.Element => {
 			password: Yup.string().required('Это обязательное поле'),
 			passwordRepeat: Yup.string().required('Это обязательное поле'),
 		}),
-		onSubmit: () => undefined,
+		onSubmit: () => router.push('/'),
 	});
+
+	useEffect(() => {
+		if(router.query.id)
+			localStorage.setItem('userId', router.query.id as string);
+	}, [router]);
 
 	return (
 		<LoginLayout>

@@ -4,59 +4,46 @@ import TextHorizontalMenu from '@components/common/TextHorizontalMenu';
 import Trash from '@assets/ic_trash.svg';
 
 import menuItems from '@shared/consts/textHorizontalMenuItems';
+import { useMemo, useState } from 'react';
+import { useQuery } from 'react-query';
+import { getEmployees } from '@/shared/api/empoyees';
 
 const EmployeesPage = (): JSX.Element => {
+	const [menuItem, setMenuItem] = useState<string>('Все подразделения');
+
+	const { data } = useQuery('get_employees', getEmployees);
+
+	const result = useMemo(() => {
+		if(!data)
+			return [];
+
+		const d = data;
+
+		if(menuItem == 'Все подразделения')
+			return d;
+		else
+			return d.filter((i) => i.project.subtitle === menuItem);
+	}, [menuItem, data]);
+
 	return(
 		<SidebarLayout className='px-20 pt-14'>
 			<h1 className='font-bold text-4xl mb-[8px]'>
 				Сотрудники на онбординге 
 			</h1>
 			<div>
-				<TextHorizontalMenu items={menuItems} />
+				<TextHorizontalMenu onMenuItemChanged={setMenuItem} items={menuItems} />
 			</div>
 			<div className='grid grid-cols-[1fr_auto]'>
 				<div className='flex flex-col mt-[26px]'>
-					<div className='flex mb-[17px]'>
-						<EmployeeCard 
-							duration='В компании 13 дней'
-							name='Александр Исаков'
-							description='21 год • UX-UI Designer • РЕМЦ'
-							className='mr-[22px]'
-							Icon={Trash} />
-						<EmployeeCard 
-							duration='В компании 56 дней'
-							name='Артемий Дёмкин'
-							description='28 лет • Менеджер • Роспатриот • РЕМЦ'
-							className='mr-[22px]'
-							Icon={Trash} />
-					</div>
-					<div className='flex mb-[17px]'>
-						<EmployeeCard 
-							duration='В компании 69 дней'
-							name='Николай Шахов'
-							description='26 лет • Управляющий • РЕМЦ'
-							className='mr-[22px]'
-							Icon={Trash} />
-						<EmployeeCard 
-							duration='В компании 100 дней'
-							name='Герман Карамышев'
-							description='29 лет • Менеджер • Роспатриот'
-							className='mr-[22px]'
-							Icon={Trash} />
-					</div>
-					<div className='flex mb-[17px]'>
-						<EmployeeCard 
-							duration='В компании 65 дней'
-							name='Ольга Лопахина'
-							description='24 года • Управляющий • Роскультцентр'
-							className='mr-[22px]'
-							Icon={Trash} />
-						<EmployeeCard 
-							duration='В компании 43 дня'
-							name='Наталья Петухова'
-							description='30 лет • Программист • РЕМЦ'
-							className='mr-[22px]'
-							Icon={Trash} />
+					<div className='flex flex-wrap gap-[17px]'>
+						{result.map((i, num) => (
+							<EmployeeCard
+								key={num} 
+								startDate={new Date(i.registrationDate)}
+								name={i.fio}
+								description={`${i.job} • ${i.project.subtitle}`}
+								Icon={Trash} />
+						))}
 					</div>
 				</div>
 			</div>

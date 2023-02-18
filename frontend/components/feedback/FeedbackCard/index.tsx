@@ -2,7 +2,7 @@ import Props from './FeedbackCard.props';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
-const FeedbackCard: React.FC<Props> = ({ duration, name, description, Icon, ...props }) => {
+const FeedbackCard: React.FC<Props> = ({ duration, name, description, Icon, feedbackId, ...props }) => {
 	const Button = dynamic(() => import('@/components/common/Button'));
 
 	const router = useRouter();
@@ -36,7 +36,7 @@ const FeedbackCard: React.FC<Props> = ({ duration, name, description, Icon, ...p
 					variant='filled'
 					color='primary'
 					className='w-[309px] float-left mb-3'
-					onClick={() => router.push('/hr/feedback/1')}
+					onClick={() => router.push(`/hr/feedback/${feedbackId}`)}
 				>
 					Посмотреть результаты опроса
 				</Button>

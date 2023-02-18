@@ -1,135 +1,32 @@
 import Button from '@/components/common/Button';
 import Title from '@/components/common/Title';
 import Answer from '@/components/feedback/Answer';
+import { getFeedbackById } from '@/shared/api/feedbacks';
+import { getFeedbackQueryKey } from '@/shared/types/api/feedback.type';
 import SidebarLayout from '@layouts/SidebarLayout';
 import { useRouter } from 'next/router';
-
-const QUESTIONS = [
-	{
-		question: 'ФИО наставника',
-		answer: 'Пьянков Александр Павлович',
-	},
-	{
-		question: 'Дата первого рабочего дня',
-		answer: '01.03.2023',
-	},
-	{
-		question: 'Насколько совпадают твои ожидания от работы в Росмолодежь с реальностью?',
-		answer: '10 из 10',
-	},
-	{
-		question: 'Насколько совпадают твои ожидания от работы в Росмолодежь с реальностью? Поделись, если есть что сказать',
-		answer: 'Мне было некомфортно работать первые дни, задачи были скучными, но сейчас уже лучше, всё хорошо',
-	},
-	{
-		question: 'Тебя представили коллегам?',
-		answer: 'Да, сразу познакомили с коллегами',
-	},
-	{
-		question: 'Ты знаешь как зовут твоих ближайших коллег?',
-		answer: 'Да, знаю',
-	},
-	{
-		question: 'Ты познакомился с коллегами из других подразделений?',
-		answer: 'Да, уже со многими познакомился',
-	},
-	{
-		question: 'Тебе понятен твой функционал?',
-		answer: 'Да, руководитель все объяснил',
-	},
-	{
-		question: 'Твой руководитель ставит тебе задачи?',
-		answer: 'Да, у меня есть конкретные задачи',
-	},
-	{
-		question: 'Тебе понятно как решать задачи, которые ставит руководитель?',
-		answer: 'Нет, не совсем понятно, что от меня ждут',
-	},
-	{
-		question: 'Есть ли сложности с выполнением задач?',
-		answer: 'Нет',
-	},
-	{
-		question: 'Обращаешься ли ты с вопросами к коллегам?',
-		answer: 'Иногда',
-	},
-	{
-		question: 'Обращаешься ли ты с вопросами к руководителю?',
-		answer: 'Да, уточняю правильно ли я понял задачу',
-	},
-	{
-		question: 'Кто чаще всего помогает тебе найти ответы на вопросы?',
-		answer: 'Руководитель',
-	},
-	{
-		question: 'Руководитель дает тебе обратную связь по результатам работы?',
-		answer: 'Нет, мы не обсуждаем',
-	},
-	{
-		question: 'У тебя есть руководитель? Напиши его ФИО',
-		answer: 'Суворова Александра Птушкина',
-	},
-	{
-		question: 'Напиши, где ты чаще всего обедаешь?',
-		answer: 'На  своём месте в офисе',
-	},
-	{
-		question: 'Напиши с кем ты чаще всего обедаешь?',
-		answer: 'С коллегами',
-	},
-	{
-		question: 'Ты знаешь, где найти контакты (телефоны, адреса) коллег?',
-		answer: 'Да',
-	},
-	{
-		question: 'Ты знаешь что делать, если заболеешь?',
-		answer: 'Не знаю',
-	},
-	{
-		question: 'Ты понимаешь структуру своего дохода?',
-		answer: 'Да',
-	},
-	{
-		question: 'Ты понимаешь структуру Росмолодежь?',
-		answer: 'Немного представляю',
-	},
-	{
-		question: 'Ты понимаешь деятельность подразделений внутри Росмолодежь?',
-		answer: 'Только своего подразделения',
-	},
-	{
-		question: 'У тебя есть понимание какие направления деятельности охватывает Росмолодежь?',
-		answer: 'Да, я знаю все направления',
-	},
-	{
-		question: 'У тебя есть представление, чем занимаются подведомственные учреждения?',
-		answer: 'Знаю только названия',
-	},
-	{
-		question: 'У тебя есть представление, чем занимаются подведомственные учреждения?',
-		answer: 'Знаю только названия',
-	},
-	{
-		question: 'Что поможет тебе почувствовать себя комфортнее и свободнее в новой среде?',
-		answer: 'Больше встреч с коллегами, ведь они такие крутые!',
-	},
-	{
-		question: 'Возможно мы что-то не спросили, а тебе важно поделиться',
-		answer: 'Самое крутое место, в котором я работала',
-	},
-];
+import { useQuery } from 'react-query';
+import QUESTIONS from '@shared/consts/questions';
 
 const FeedbackByIdPage = (): JSX.Element => {
 	const router = useRouter();
+	
+	const { data, isSuccess } = useQuery([{ id: +(router.query.id as string) }, 'get_feedback'] as getFeedbackQueryKey,
+		getFeedbackById, {
+			enabled: !!router && !!router.query && !!router.query.id,
+		});
 
 	return (
 		<SidebarLayout className='p-20 grid gap-6 h-fit'>
 			<Title
 				onClickBackButton={() => router.push('/hr/feedback')}
-				label='Александр Исаков'
+				label={data?.user.fio || 'Загрузка...'}
 				className='mb-1' />
-			{QUESTIONS.map((i, num) => (
-				<Answer key={num} {...i} /> 
+			{isSuccess && Object.keys(data.answers).map((i, num) => (
+				<Answer
+					key={num}
+					question={(QUESTIONS as any)[i]}
+					answer={(data.answers as any)[i]} /> 
 			))}
 			<Button variant='filled' color='primary' className='w-full'>
 				Понятно

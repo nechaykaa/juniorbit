@@ -1,3 +1,5 @@
+import IProject from './project.model';
+
 interface IEmployee {
 	id: number;
 	fio: string;
@@ -5,9 +7,10 @@ interface IEmployee {
 	job: string;
 	phone: string;
 	tg: string;
-	mentorId: 1 | 2; // 1 - Denis    2 - Vlad
-	hrId: 1 | 2; // 1 - Alex      2 - Egor
-	projectId: 1 | 2 | 3 | 4 | 5 | 6;
+	mentorId: 0 | 1;
+	hrId: 0 | 1; 
+	projectId: 0 | 1 | 2 | 3 | 4 | 5;
+	project: IProject;
 	registrationDate: string;
 }
 

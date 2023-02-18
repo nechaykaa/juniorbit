@@ -5,8 +5,12 @@ import SidebarLayout from '@layouts/SidebarLayout';
 import IcTimelineLine from '@assets/timelineLine.svg';
 import ProfileCard from '@components/career/ProfileCard';
 import NearestAchive from '@assets/nearestAchive.svg';
+import { useQuery } from 'react-query';
+import { getMe } from '@/shared/api/me';
 
 const CareerPage = (): JSX.Element => {
+	const { data, isSuccess } = useQuery('get_me', getMe);
+
 	return (
 		<SidebarLayout>
 			<div className='grid grid-cols-[1fr_448px] h-fit pr-20'>
@@ -25,7 +29,13 @@ const CareerPage = (): JSX.Element => {
 								трудоустройства в штат
 							</span>
 						</p>
-						<ProfileCard />
+						{isSuccess && (
+							<ProfileCard
+								fio={data.fio}
+								startDate={new Date(data.registrationDate)}
+								job={data.job}
+								project={data.project.subtitle} />
+						)}
 					</div>
 					<NearestAchive />
 				</div>

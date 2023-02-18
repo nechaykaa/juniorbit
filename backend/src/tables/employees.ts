@@ -1,14 +1,14 @@
 import { IProject } from "./projects";
 
-interface IEmployee {
+export interface IEmployee {
 	id: number;
 	fio: string;
 	email: string;
 	job: string;
 	phone: string;
 	tg: string;
-	mentorId: 1 | 2; // 1 - Denis    2 - Vlad
-	hrId: 1 | 2; // 1 - Alex      2 - Egor
+	mentorId: 0 | 1;
+	hrId: 0 | 1;
 	projectId: 0 | 1 | 2 | 3 | 4 | 5;
 	project: IProject;
 	registrationDate: string;
@@ -22,8 +22,8 @@ const EMPLOYEES_TABLE: IEmployee[] = [
 		job: 'Начальник отдела дизайна',
 		phone: '',
 		tg: 'alexis.design',
-		mentorId: 1,
-		hrId: 2,
+		mentorId: 0,
+		hrId: 1,
 		projectId: 5,
 		project: {
 			id: 5,
@@ -43,8 +43,8 @@ const EMPLOYEES_TABLE: IEmployee[] = [
 		job: 'Главный программист',
 		phone: '',
 		tg: 'martini_nechav',
-		mentorId: 2,
-		hrId: 1,
+		mentorId: 1,
+		hrId: 0,
 		projectId: 3,
 		project: {
 			id: 3,
@@ -65,8 +65,8 @@ const EMPLOYEES_TABLE: IEmployee[] = [
 		job: 'Главный менеджер',
 		phone: '',
 		tg: 'nikita_cas',
-		mentorId: 1,
-		hrId: 2,
+		mentorId: 0,
+		hrId: 1,
 		projectId: 0,
 		project: {
 			id: 0,

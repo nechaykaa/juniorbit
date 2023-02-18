@@ -35,7 +35,7 @@ app.get('/api/employees', (req, res) => {
     res.json(employees_1.default);
 });
 app.post('/api/employees', (req, res) => {
-    employees_1.default.push(Object.assign({ id: employees_1.default.length }, req.body));
+    employees_1.default.push(Object.assign({ id: employees_1.default.length, project: projects_1.default.find((i, num) => i.id === +req.body.projectId), registrationDate: JSON.stringify((new Date(Date.now()).toString())) }, req.body));
     res.json({
         id: employees_1.default.length - 1,
     });
@@ -54,6 +54,7 @@ app.get('/api/feedbacks', (req, res) => {
 app.post('/api/feedbacks', (req, res) => {
     feedbacks_1.default.push({
         id: feedbacks_1.default.length,
+        user: employees_1.default.find((i) => i.id === +req.query.userId),
         answers: Object.assign({}, req.body),
     });
     res.json({
@@ -66,6 +67,14 @@ app.get('/api/feedbacks/:id', (req, res) => {
         res.json(feedback);
     else
         res.sendStatus(404);
+});
+// other
+app.get('/api/me', (req, res) => {
+    const me = employees_1.default.find((i, num) => i.id === +req.query.userId);
+    if (me)
+        res.json(me);
+    else
+        res.sendStatus(400);
 });
 app.listen(4000);
 exports.default = app;

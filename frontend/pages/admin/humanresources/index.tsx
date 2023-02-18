@@ -19,19 +19,19 @@ const EmployeesPage = (): JSX.Element => {
 				<div className='flex flex-col mt-[26px]'>
 					<div className='flex mb-[17px]'>
 						<EmployeeCard 
-							duration='Telegram • +7 (922) 129-78-06'
+							label='Telegram • +7 (922) 129-78-06'
 							name='Александр Исаков'
 							description='HR'
 							className='mr-[22px]' />
 						<EmployeeCard 
-							duration='Telegram • +7 (922) 129-78-06'
+							label='Telegram • +7 (922) 129-78-06'
 							name='Мартин Нечаев'
 							description='HR'
 							className='mr-[22px]' />
 					</div>
 					<div className='flex mb-[17px]'>
 						<EmployeeCard 
-							duration='Telegram • +7 (922) 129-78-06'
+							label='Telegram • +7 (922) 129-78-06'
 							name='Андрей Волков'
 							description='HR'
 							className='mr-[22px]' />

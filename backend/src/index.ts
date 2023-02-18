@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 import PROJECTS_TABLE from './tables/projects';
-import EMPLOYEES_TABLE from './tables/employees';
+import EMPLOYEES_TABLE, { IEmployee } from './tables/employees';
 import FEEDBACK_TABLE from './tables/feedbacks';
 
 const app = express();
@@ -48,6 +48,7 @@ app.post('/api/employees', (req, res) => {
 	EMPLOYEES_TABLE.push({
 		id: EMPLOYEES_TABLE.length,
 		project: PROJECTS_TABLE.find((i, num) => i.id === +req.body.projectId),
+		registrationDate: JSON.stringify((new Date(Date.now()).toString())),
 		...req.body,
 	})
 
@@ -74,6 +75,7 @@ app.get('/api/feedbacks', (req, res) => {
 app.post('/api/feedbacks', (req, res) => {
 	FEEDBACK_TABLE.push({
 		id: FEEDBACK_TABLE.length,
+		user: EMPLOYEES_TABLE.find((i) => i.id === +(req.query as any).userId) as IEmployee,
 		answers: {
 			...req.body,
 		},
@@ -91,6 +93,17 @@ app.get('/api/feedbacks/:id', (req, res) => {
 		res.json(feedback);
 	else
 		res.sendStatus(404);
+});
+
+// other
+
+app.get('/api/me', (req, res) => {
+	const me = EMPLOYEES_TABLE.find((i, num) => i.id === +(req.query as any).userId);
+
+	if(me)
+		res.json(me);
+	else
+		res.sendStatus(400);
 });
 
 app.listen(4000);
