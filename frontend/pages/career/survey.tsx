@@ -77,16 +77,6 @@ const SurveyPage = (): JSX.Element => {
 					label: i.toString(),
 					id: i.toString(),
 				}))} />
-			<h2 className='text-BoldBodyText_18 mt-7 mb-3'>
-				Насколько совпадают твои ожидания от работы в Росмолодежь с реальностью?
-			</h2>
-			<RadioInput
-				onChange={formik.handleChange}
-				name='rate2'
-				items={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => ({
-					label: i.toString(),
-					id: i.toString(),
-				}))} />
 			<Input
 				placeholder='Насколько совпадают твои ожидания от работы  с реальностью?'
 				className='mt-6 mb-3'
