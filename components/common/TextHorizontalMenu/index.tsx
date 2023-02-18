@@ -13,9 +13,13 @@ const TextHorizontalMenu: React.FC<Props> = ({ className = '', items, ...props }
 	});
 
 	return (
-		<div className={className + ' flex gap-3 items-center'} {...props}>
+		<div className={className + ' flex gap-12 items-center'} {...props}>
 			{items.map((i, num) => (
-				<Link key={num} href={i.link} className={'text-heading-2 ' + (selectedMenuItem !== num && 'text-grey')}>
+				<Link
+					key={num} 
+					href={i.link} 
+					className={'text-heading-2 ' + (selectedMenuItem !== num ? 'text-grey' : 'text-primary')}
+				>
 					{i.label}
 				</Link>
 			))}
