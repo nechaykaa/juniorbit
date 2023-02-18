@@ -3,6 +3,7 @@ import Section1 from '@assets/landing/section1.svg';
 import Section2 from '@assets/landing/section2.svg';
 import Section3 from '@assets/landing/section3.svg';
 import Section4 from '@assets/landing/section4.svg';
+import Section5 from '@assets/landing/section5.svg';
 
 const Landing = (): JSX.Element => {
 	return (
@@ -99,6 +100,50 @@ const Landing = (): JSX.Element => {
 					<br />
 					Российской Федерации на период до 2025 г.
 				</p>
+			</section>
+			<section className='mt-[550px]'>
+				<h2 className='text-[#D8D8D8] font-semibold text-[48px] ml-[120px]'>
+					Мечтаем и делаем мечты реальными
+				</h2>
+				<h2 className='font-bold text-[48px] ml-[120px] mt-[7px]'>
+					Пару слов о нас✌️
+				</h2>
+				<div className='flex mt-[18px] ml-[120px]'>
+					<div className='mr-[50px]'>
+						<p className='font-bold text-[46px] '>
+							20
+						</p>
+						<p className='text-[#9F9F9F] text-[16px] font-medium'>
+							Проектов
+							<br />
+							всероссийского
+							<br />
+							масштаба
+						</p>
+					</div>
+					<div className='mr-[50px]'>
+						<p className='font-bold text-[46px] '>
+							100
+						</p>
+						<p className='text-[#9F9F9F] text-[16px] font-medium'>
+							Лучших специалистов
+							<br />
+							в своей области
+						</p>
+					</div>
+					<div>
+						<p className='font-semibold text-[22px]'>
+							Мы небольшая, но очень дружная команда, которая
+							<br />
+							занимается реальными продуктами клиентов. Все что мы
+							<br />
+							делаем, либо уже живет и развивается, либо скоро увидит
+							<br />
+							свет. Это касается и сайтов, и мобильных приложений.
+						</p>
+					</div>
+				</div>
+				<Section5 className='absolute -z-1' />
 			</section>
 		</div>
 	);
