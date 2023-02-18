@@ -5,7 +5,7 @@ import Feedback from '@assets/sidebarIcons/feedback.svg';
 import Home from '@assets/sidebarIcons/home.svg';
 import Projects from '@assets/sidebarIcons/projects.svg';
 
-type sidebarItemColorTypes = 'fill' | 'stroke';
+export type sidebarItemColorTypes = 'fill' | 'stroke';
 
 interface ISidebarItem {
 	label: string;
