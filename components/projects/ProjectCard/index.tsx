@@ -10,13 +10,13 @@ const ProjectCard: React.FC<Props> = ({ label, subtitle, description, icon, ...p
 			}}
 			{...props}
 		>
-			<div className='py-[20px] px-[20px] w-[474px]'>
-				<div className='flex mb-4'>
+			<div className='p-[20px] w-[474px]'>
+				<div className='flex mb-4 justify-between'>
 					<div>
 						<p className='text-BoldBodyText_18 text-black text-left'>
 							{label}
 						</p>
-						<p className='text-BoldBodyText_14 text-[12px] text-primary text-left'>
+						<p className='text-BodyText_14 text-[12px] text-primary text-left'>
 							{subtitle}
 						</p>
 					</div>
@@ -29,7 +29,7 @@ const ProjectCard: React.FC<Props> = ({ label, subtitle, description, icon, ...p
 							src={icon} />
 					</div>
 				</div>
-				<p className='text-BoldBodyText_14 text-[12px] text-darkGrey text-left'>
+				<p className='text-BodyText_14 text-[12px] text-darkGrey text-left'>
 					{description}
 				</p>
 			</div>
