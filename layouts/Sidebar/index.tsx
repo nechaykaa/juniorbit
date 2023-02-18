@@ -1,7 +1,6 @@
 import Props from './Sidebar.props';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import SidebarItem from '@components/common/SidebarItem';
 import Logo from '@components/common/Logo';
@@ -10,7 +9,7 @@ import useMenu from '@/stores/useMenu';
 import CloseLgIcon from '@assets/ic_close_lg.svg';
 // import CloseLgIcon from '../../assets/ic_close_lg.svg';s
 
-import SIDEBAR_ITEMS from './Sidebar.config';
+import { SIDEBAR_ITEMS, SIDEBAR_ITEMS_HR } from './Sidebar.config';
 import Button from '@/components/common/Button';
 
 const Sidebar: React.FC<Props> = ({ className = '', style, ...props }) => {
@@ -18,12 +17,19 @@ const Sidebar: React.FC<Props> = ({ className = '', style, ...props }) => {
 
 	const { setIsMenuOpened } = useMenu();
 
+	const sidebarItems = useMemo(() => {
+		if(router.pathname.includes('hr'))
+			return SIDEBAR_ITEMS_HR;
+		else
+			return SIDEBAR_ITEMS;
+	}, [router]);
+
 	const [spanPadding, setSpanPadding] = useState(0);
 
 	useEffect(() => setInitialSpanPadding(), [router]);
 
 	function setInitialSpanPadding() {
-		SIDEBAR_ITEMS.forEach((i, num) => {
+		sidebarItems.forEach((i, num) => {
 			if(router.pathname.includes(i.href) || (i.validateEndsWith && router.pathname.endsWith(i.href)))
 				setSpanPadding(64 * num);
 		});
@@ -51,7 +57,7 @@ const Sidebar: React.FC<Props> = ({ className = '', style, ...props }) => {
 					style={{ top: spanPadding }}
 				></div>
 				<div className='absolute w-full'>
-					{SIDEBAR_ITEMS.map((i, num) => (
+					{sidebarItems.map((i, num) => (
 						<SidebarItem
 							key={num}
 							label={i.label}
@@ -63,7 +69,12 @@ const Sidebar: React.FC<Props> = ({ className = '', style, ...props }) => {
 							onMouseLeave={() => setInitialSpanPadding()} />
 					))}
 					{router.pathname.includes('hr') && (
-						<Button color='primary' variant='filled' className='w-full ml-10 mr-130 mt-3'>
+						<Button
+							color='primary'
+							variant='filled'
+							className='w-full ml-10 mr-130 mt-3'
+							onClick={() => router.push('/hr/employees/new')}
+						>
 							Создать сотрудника
 						</Button>
 					)}

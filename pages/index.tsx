@@ -6,6 +6,7 @@ import CAREER_STEPS from '@/shared/consts/careerSteps';
 import IcTimelineLine from '@assets/tinelineSm.svg';
 import DenisCard from '@assets/denis.svg';
 import AlexCard from '@assets/alex.svg';
+import Button from '@/components/common/Button';
 
 const MainPage = (): JSX.Element => {
 	return (
@@ -13,7 +14,7 @@ const MainPage = (): JSX.Element => {
 			<h1 className='font-bold text-4xl mb-10'>
 				Главная
 			</h1>
-			<div className='grid grid-cols-[1fr_auto]'>
+			<div className='grid grid-cols-[1fr_auto] gap-4'>
 				<div>
 					<ProfileCard />
 					<div className='flex flex-col gap-12 mt-20 relative'>
@@ -28,10 +29,16 @@ const MainPage = (): JSX.Element => {
 						Твой наставник
 					</h2>
 					<DenisCard />
-					<h2 className='font-bold text-xl text-primary mt-7 mb-2'>
+					<Button variant='filled' color='primary' className='w-full my-5'>
+						Задать вопрос
+					</Button>
+					<h2 className='font-bold text-xl text-primary mb-2'>
 						Твой HR
 					</h2>
 					<AlexCard />
+					<Button variant='filled' color='primary' className='w-full my-5'>
+						Задать вопрос
+					</Button>
 				</div>
 			</div>
 		</SidebarLayout>

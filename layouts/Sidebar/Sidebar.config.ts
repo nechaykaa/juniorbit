@@ -55,4 +55,29 @@ const SIDEBAR_ITEMS: ISidebarItem[] = [
 	},
 ];
 
-export default SIDEBAR_ITEMS;
+const SIDEBAR_ITEMS_HR: ISidebarItem[] = [
+	{
+		label: 'Главная',
+		href: '/hr',
+		icon: Home,
+		colorType: 'stroke',
+		validateEndsWith: true,
+	},
+	{
+		label: 'Сотрудники',
+		href: '/hr/employees',
+		icon: Employees,
+		colorType: 'stroke',
+	},
+	{
+		label: 'Обратная связь',
+		href: '/hr/feedback',
+		icon: Feedback,
+		colorType: 'fill',
+	},
+];
+
+export {
+	SIDEBAR_ITEMS,
+	SIDEBAR_ITEMS_HR,
+};
