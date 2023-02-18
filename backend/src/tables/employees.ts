@@ -11,6 +11,6 @@ interface IEmployee {
 	registrationDate: string;
 }
 
-const EMPLOYEE_TABLE: IEmployee[] = [];
+const EMPLOYEES_TABLE: IEmployee[] = [];
 
-export default EMPLOYEE_TABLE;
+export default EMPLOYEES_TABLE;
