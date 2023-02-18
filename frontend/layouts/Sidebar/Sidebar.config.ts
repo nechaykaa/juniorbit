@@ -82,7 +82,7 @@ const SIDEBAR_ITEMS_HR: ISidebarItem[] = [
 const SIDEBAR_ITEMS_ADMIN: ISidebarItem[] = [
 	{
 		label: 'Аналитика',
-		href: '/hr',
+		href: '/admin',
 		icon: Analytic,
 		colorType: 'stroke',
 		validateEndsWith: true,
