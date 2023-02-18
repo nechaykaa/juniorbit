@@ -47,6 +47,7 @@ app.get('/api/employees', (req, res) => {
 app.post('/api/employees', (req, res) => {
 	EMPLOYEES_TABLE.push({
 		id: EMPLOYEES_TABLE.length,
+		project: PROJECTS_TABLE.find((i, num) => i.id === +req.body.projectId),
 		...req.body,
 	})
 
