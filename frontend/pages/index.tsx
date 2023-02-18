@@ -1,65 +1,107 @@
-import ProfileCard from '@/components/career/ProfileCard';
-import TimelineItem from '@/components/career/TimelineItem';
-import SidebarLayout from '@/layouts/SidebarLayout';
-import CAREER_STEPS from '@/shared/consts/careerSteps';
+import Logo from '@/components/common/Logo';
+import Section1 from '@assets/landing/section1.svg';
+import Section2 from '@assets/landing/section2.svg';
+import Section3 from '@assets/landing/section3.svg';
+import Section4 from '@assets/landing/section4.svg';
 
-import IcTimelineLine from '@assets/tinelineSm.svg';
-import Button from '@/components/common/Button';
-import { useQuery } from 'react-query';
-import { getMe } from '@/shared/api/me';
-
-import DenisCard from '@assets/denis.svg';
-import IliaCard from '@assets/ilia.svg';
-
-import AlexCard from '@assets/alex.svg';
-import NikitaCard from '@assets/nikita.svg';
-
-const MENTORS = [<DenisCard key={0} />, <IliaCard key={1} />];
-const HRS = [<AlexCard key={0} />, <NikitaCard key={1} />];
-
-const MainPage = (): JSX.Element => {
-	const { data, isSuccess } = useQuery('get_me', getMe);
-
+const Landing = (): JSX.Element => {
 	return (
-		<SidebarLayout className='px-20 pt-14'>
-			<h1 className='font-bold text-4xl mb-10'>
-				Главная
-			</h1>
-			<div className='grid grid-cols-[1fr_auto] gap-4'>
+		<div>
+			<section className='ml-[121px]'>
 				<div>
-					{isSuccess && (
-						<ProfileCard
-							fio={data.fio}
-							startDate={new Date(data.registrationDate)}
-							job={data.job}
-							project={data.project.subtitle} />
-					)}
-					<div className='flex flex-col gap-12 mt-20 relative'>
-						<IcTimelineLine className='absolute left-[34px] -z-10' />
-						{[CAREER_STEPS[1], CAREER_STEPS[2]].map((i, num) => (
-							<TimelineItem key={num} {...i} />
-						))}
+					<Section1 className='absolute right-0 -z-1 top-0' />
+					<div className='mt-[41px]'>
+						<Logo />
+						<p className='font-semibold text-[40px] mt-[151px]'>
+							Поздравляю!
+						</p>
+						<p className='font-bold text-[58px]'>
+							вы попали в компанию 
+							<span className='text-primary'>
+								<br />
+								по-настоящему
+								<br />
+							</span> 
+							масштабных проектов
+						</p>
+						<div className='flex'>
+							<div className='mr-[65px]'>
+								<p className='font-bold text-[90px]'>
+									100
+								</p>
+								<p className='font-semibold text-[22px] text-[#767676]'>
+									Самых заряженных
+									<br />
+									сотрудников
+								</p>
+							</div>
+							<div>
+								<p className='font-bold text-[90px]'>
+									25
+								</p>
+								<p className='font-semibold text-[22px] text-[#767676]'>
+									Масштабнейших,
+									<br />
+									всероссийских проектов
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div>
-					<h2 className='font-bold text-xl text-primary mb-2'>
-						Твой наставник
-					</h2>
-					{isSuccess && MENTORS[data.mentorId]}
-					<Button variant='filled' color='primary' className='w-full my-5'>
-						Задать вопрос
-					</Button>
-					<h2 className='font-bold text-xl text-primary mb-2'>
-						Твой HR
-					</h2>
-					{isSuccess && HRS[data.hrId]}
-					<Button variant='filled' color='primary' className='w-full my-5'>
-						Задать вопрос
-					</Button>
-				</div>
-			</div>
-		</SidebarLayout>
+			</section>
+			<section className='mt-[97px]'>
+				<Section2 className='absolute -z-1' />
+				<p className='font-semibold text-[22px] ml-[630px] pt-[680px]'>
+					<span className='text-primary'>
+						Федеральное агентство по делам молодежи -
+					</span>
+					<br />
+					федеральный орган исполнительной власти в России,
+					<br />
+					осуществляющий функции по оказанию
+					<br />
+					государственных услуг и управлению
+					<br />
+					<br />
+					Так же, реализацией мероприятий, направленных на
+					<br />
+					обеспечение здорового образа жизни молодёжи
+				</p>
+			</section>
+			<section className='mt-[20px] '>
+				<Section3 className='absolute -z-1 ml-[714px] ' />
+				<p className='ml-[118px] mt-[160px] pt-[70px] font-semibold text-[22px]'>
+					Компания была основана в 2008 году, когда у руля был
+					<br />
+					Якеменко, Василий Григорьевич. Спустя много лет, компания
+					<br />
+					пережила много изменений,  начиная от смены нескольких
+					<br />
+					руководителей, заканчивая сменой позиционирования
+					<br />
+					бренда на более молодежный tone of voice.
+				</p>
+			</section>
+			<section className='mt-[20px] '>
+				<Section4 className='absolute -z-1' />
+				<p className='ml-[120px] pt-[190px] font-semibold text-[22px]'>
+					Сейчас мы организовываем форумы и 
+					<br />
+					мероприятия, оказываем поддержку молодёжи
+					<br />
+					во всех регионах нашей страны. Мы гордимся историями
+					<br />
+					успеха наших подопечных. С помощью подведомственных
+					<br />
+					учреждений решаем широкий круг задач, руководствуясь
+					<br />
+					Основами государственной молодёжной политики
+					<br />
+					Российской Федерации на период до 2025 г.
+				</p>
+			</section>
+		</div>
 	);
 };
 
-export default MainPage;
+export default Landing;

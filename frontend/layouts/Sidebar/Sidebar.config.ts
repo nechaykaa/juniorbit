@@ -20,7 +20,7 @@ interface ISidebarItem {
 const SIDEBAR_ITEMS: ISidebarItem[] = [
 	{
 		label: 'Главная',
-		href: '/',
+		href: '/dashboard',
 		icon: Home,
 		colorType: 'stroke',
 		validateEndsWith: true,
