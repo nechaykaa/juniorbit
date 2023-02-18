@@ -10,7 +10,7 @@ const TagsPicker: React.FC<Props> = ({ tags, setTags, placeholder, onDeleteTag, 
 
 	return (
 		<div {...props}>
-			<div className='flex gap-2'>
+			<div className='grid grid-cols-[1fr_160px] gap-2'>
 				<Input 
 					placeholder={placeholder}
 					className='w-full' 
@@ -18,9 +18,9 @@ const TagsPicker: React.FC<Props> = ({ tags, setTags, placeholder, onDeleteTag, 
 					onChange={(e) => setInputValue(e.target.value)} />
 
 				<Button
-					color='black' 
-					variant='icon' 
-					className='w-16 items-center justify-center flex rounded-[16px]'
+					color='primary' 
+					variant='stroke' 
+					className='items-center justify-center flex rounded-[16px] text-primary'
 					onClick={() => {
 						if (inputValue) {
 							setTags(inputValue);
@@ -28,7 +28,7 @@ const TagsPicker: React.FC<Props> = ({ tags, setTags, placeholder, onDeleteTag, 
 						}
 					}}
 				>
-					<PlusIcon className='stroke-white' />
+					Добавить
 				</Button>
 			</div>
 
