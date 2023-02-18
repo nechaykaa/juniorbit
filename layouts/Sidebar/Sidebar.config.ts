@@ -21,6 +21,7 @@ const SIDEBAR_ITEMS: ISidebarItem[] = [
 		href: '/',
 		icon: Home,
 		colorType: 'stroke',
+		validateEndsWith: true,
 	},
 	{
 		label: 'Проекты',

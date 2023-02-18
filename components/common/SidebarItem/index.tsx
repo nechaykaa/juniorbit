@@ -14,7 +14,7 @@ const SidebarItem: React.FC<Props> = ({ className = '', ref, label, Icon, href =
 			return false;
 		else if(!validateEndsWith && router.pathname.includes(href))
 			return true;
-		else if(validateEndsWith&& router.pathname.endsWith(href))
+		else if(validateEndsWith && router.pathname.endsWith(href))
 			return true;
 		else
 			return false;

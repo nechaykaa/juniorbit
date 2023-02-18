@@ -11,6 +11,7 @@ import CloseLgIcon from '@assets/ic_close_lg.svg';
 // import CloseLgIcon from '../../assets/ic_close_lg.svg';s
 
 import SIDEBAR_ITEMS from './Sidebar.config';
+import Button from '@/components/common/Button';
 
 const Sidebar: React.FC<Props> = ({ className = '', style, ...props }) => {
 	const router = useRouter();
@@ -61,6 +62,11 @@ const Sidebar: React.FC<Props> = ({ className = '', style, ...props }) => {
 							onMouseEnter={() => setSpanPadding(64 * num)}
 							onMouseLeave={() => setInitialSpanPadding()} />
 					))}
+					{router.pathname.includes('hr') && (
+						<Button color='primary' variant='filled' className='w-full ml-10 mr-130 mt-3'>
+							Создать сотрудника
+						</Button>
+					)}
 				</div>
 			</div>
 		</nav>
