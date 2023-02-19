@@ -21,7 +21,7 @@ const Documentation = (): JSX.Element => {
 					Они содержат нормы, которым должны подчиняться структура и состав текстов в сфере строительства,
 					приборостроения и машиностроения.
 				</p>
-				<h2 className='text-heading-1 mb-[30px]' id='stages'>
+				<h2 className='text-heading-1 mb-[30px]' id='second'>
 					Общие моменты
 				</h2>
 				<p className='text-BodyText_18 mb-[30px]'>
@@ -43,7 +43,7 @@ const Documentation = (): JSX.Element => {
 					ГОСТ Р 2.711-2019 «Единая система конструкторской документации. Схема деления изделия на составные
 					 части», утв. приказом Росстандарта от 29.04.2019 № 179-ст.
 				</p>
-				<h2 className='text-heading-1 mb-[30px]' id='it'>
+				<h2 className='text-heading-1 mb-[30px]' id='third'>
 					Способы Оформления
 				</h2>
 				<p className='text-BodyText_18 mb-[30px]'>

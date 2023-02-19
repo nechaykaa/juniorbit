@@ -9,7 +9,7 @@ import useMenu from '@/stores/useMenu';
 import CloseLgIcon from '@assets/ic_close_lg.svg';
 // import CloseLgIcon from '../../assets/ic_close_lg.svg';s
 
-import { SIDEBAR_ITEMS, SIDEBAR_ITEMS_ADMIN, SIDEBAR_ITEMS_HR } from './Sidebar.config';
+import { SIDEBAR_ITEMS, SIDEBAR_ITEMS_ADMIN, SIDEBAR_ITEMS_HR, SIDEBAR_ITEMS_DOC } from './Sidebar.config';
 import Button from '@/components/common/Button';
 
 const Sidebar: React.FC<Props> = ({ className = '', style, ...props }) => {
@@ -22,6 +22,8 @@ const Sidebar: React.FC<Props> = ({ className = '', style, ...props }) => {
 			return SIDEBAR_ITEMS_HR;
 		else if(router.pathname.includes('admin'))
 			return SIDEBAR_ITEMS_ADMIN;
+		else if(router.pathname.includes('doc'))
+			return SIDEBAR_ITEMS_DOC;
 		else
 			return SIDEBAR_ITEMS;
 	}, [router]);
