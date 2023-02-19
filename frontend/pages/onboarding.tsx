@@ -24,7 +24,7 @@ const OnboardingPage = (): JSX.Element => {
 			controls.start({
 				opacity: [1, 1, 0, 0, 1],
 				transition: {
-					duration: 3,
+					duration: 1.5,
 					times: [0, 0.7, 0.8, 0.9, 1],
 				},
 			});
@@ -34,12 +34,12 @@ const OnboardingPage = (): JSX.Element => {
 				controls.start({
 					opacity: [1, 1, 0, 0, 1],
 					transition: {
-						duration: 3,
+						duration: 1.5,
 						times: [0, 0.7, 0.8, 0.9, 1],
 					},
 				});
-			}, 3500);
-		}, 950);
+			}, 1750);
+		}, 475);
 
 		const interval2 = setInterval(() => {
 			setActiveScreen((prev) => {
@@ -51,7 +51,7 @@ const OnboardingPage = (): JSX.Element => {
 				}
 				return prev + 1;
 			});
-		}, 3500);
+		}, 1750);
 	}, []);
 	
 	return (
