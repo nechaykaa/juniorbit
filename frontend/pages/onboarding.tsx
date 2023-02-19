@@ -46,7 +46,7 @@ const OnboardingPage = (): JSX.Element => {
 				if(prev + 1 === 12) {
 					clearInterval(interval2);
 
-					window.location.href = '/';
+					window.location.href = '/dashboard';
 					return prev;
 				}
 				return prev + 1;

@@ -4,8 +4,14 @@ import Section2 from '@assets/landing/section2.svg';
 import Section3 from '@assets/landing/section3.svg';
 import Section4 from '@assets/landing/section4.svg';
 import Section5 from '@assets/landing/section5.svg';
+import SectionAll from '@assets/landing/SectionAll.svg';
+import Bottom from '@assets/landing/bottom.svg';
+import Button from '@/components/common/Button';
+
+import { useRouter } from 'next/router';
 
 const Landing = (): JSX.Element => {
+	const router = useRouter();
 	return (
 		<div>
 			<section className='ml-[121px]'>
@@ -144,6 +150,18 @@ const Landing = (): JSX.Element => {
 					</div>
 				</div>
 				<Section5 className='absolute -z-1' />
+			</section>
+			<section className='mt-[700px]'>
+				<SectionAll className='-z-1 absolute' />
+				<Bottom className='-z-2 absolute mt-[2300px]' />
+				<Button 
+					variant='filled' 
+					color='primary' 
+					className='z-5 absolute mt-[3430px] ml-[499px] px-[105px] py-[20px] '
+					onClick={() => router.push('/onboarding')}
+				>
+					Отправиться на платформу
+				</Button>
 			</section>
 		</div>
 	);
