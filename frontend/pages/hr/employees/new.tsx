@@ -28,6 +28,8 @@ const NewEmployeePage = (): JSX.Element => {
 		onSuccess: () => router.push('/hr/employees'),
 	});
 
+	const url = `http://localhost:3000/login?id=${data?.length}`;
+	
 	const formik = useFormik({
 		initialValues: {
 			fio: '',
@@ -145,10 +147,10 @@ const NewEmployeePage = (): JSX.Element => {
 			</h2>
 			<div className='flex text-center align-middle py-[23px] pl-[20px] pr-[425] bg-lightGrey rounded-2xl'>
 				<LinkIcon />
-				<p className='text-primary text-BodyText_14 mt-[3px] ml-3'>
+				<a href={url} className='text-primary text-BodyText_14 mt-[3px] ml-3'>
 					http://localhost:3000/login?id=
 					{data?.length}
-				</p>
+				</a>
 			</div>
 			
 			<Button
